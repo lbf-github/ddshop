@@ -59,6 +59,7 @@
     <!--声明依赖-->
     <dependencyManagement>
         <dependencies>
+            <!--验证第二次提交-->
             <!--jsp相关-->
             <dependency>
                 <groupId>javax.servlet</groupId>
