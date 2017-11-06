@@ -6,15 +6,16 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="dd-common" />
         <module name="dd-manager-interface" />
         <module name="dd-manager-pojo" />
         <module name="dd-manager-service" />
         <module name="dd-manager-web" />
-        <module name="ddcommon" />
         <module name="do-manager-dao" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.7">
+      <module name="dd-common" target="1.7" />
       <module name="dd-manager" target="1.7" />
       <module name="dd-manager-interface" target="1.7" />
       <module name="dd-manager-pojo" target="1.7" />
