@@ -41,6 +41,22 @@ var itemList = {
     registerMenuEvent: function () {
 
         $("#table").datagrid({
+            toolbar:[{
+                iconCls: 'icon-up',
+                text: '上架',
+                handler: function () {
+
+                    var selectRows = $('#table').datagrid('getSelections');
+                    console.log(selectRows);
+
+                }
+            },{
+                iconCls: 'icon-down',
+                text: '下架',
+                handler: function () {
+                    console.log('down');
+                }
+            }],
             url: "items",
             columns: [[
                 {field:'ck',checkbox: true},
@@ -65,21 +81,7 @@ var itemList = {
 };
 
 
-$("#dg").datagrid({
-        toolbar:[{
-        iconCls: 'icon-up',
-        text: '上架',
-        handler: function () {
-            console.log('up');
-        }
-    },{
-        iconCls: 'icon-down',
-        text: '下架',
-        handler: function () {
-            console.log('down');
-        }
-    }]
-});
+
 
 
 
