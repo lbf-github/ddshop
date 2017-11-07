@@ -43,19 +43,19 @@ var itemList = {
         $("#table").datagrid({
             url: "items",
             columns: [[
+                {field:'ck',checkbox: true},
                 {field: 'id', title: '商品ID'},
                 {field: 'title', title: '商品名称'},
+                {field: 'catName', title: '商品分类'},
+                {field: 'statusName', title: '商品状态'},
                 {field: 'sellPoint', title: '卖点'}
             ]],
             pagination: true,
-            pagePosition: 'top',
             striped: true,
-            pageSize: 8,
-            nowrap: false,
+            pageSize:20,
+            rownumbers:true,
+            fit:true,
             loadMsg: '数据正在努力加载，请稍后...'
-
-
-
         })
 
 
@@ -63,6 +63,24 @@ var itemList = {
 
 
 };
+
+
+$("#dg").datagrid({
+        toolbar:[{
+        iconCls: 'icon-up',
+        text: '上架',
+        handler: function () {
+            console.log('up');
+        }
+    },{
+        iconCls: 'icon-down',
+        text: '下架',
+        handler: function () {
+            console.log('down');
+        }
+    }]
+});
+
 
 
 
