@@ -9,10 +9,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * User: Administrator
@@ -40,19 +39,7 @@ public class ItemAction {
 
 
 
-//    @ResponseBody
-//    @RequestMapping("/items")
-//    public List<TbItem> selectAll(){
-//        List<TbItem> list=null;
-//       try {
-//           list = itemService.findAll();
-//       }catch (Exception e){
-//            logger.error(e.getMessage(),e);
-//           e.printStackTrace();
-//       }
-//
-//        return list;
-//    }
+
 
     @ResponseBody
     @RequestMapping("/items")
@@ -67,4 +54,9 @@ public class ItemAction {
         return list;
     }
 
+    @ResponseBody
+    @RequestMapping(value="items/batch",method = RequestMethod.POST)
+    public int updateItemsByIds(@RequestParam("ids[]") List<Long> ids){
+        return itemService.updateItemsByIds(ids);
+    }
 }

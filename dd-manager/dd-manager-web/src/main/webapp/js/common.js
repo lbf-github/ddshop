@@ -42,13 +42,57 @@ var itemList = {
 
         $("#table").datagrid({
             toolbar:[{
-                iconCls: 'icon-up',
-                text: '上架',
+
+                text: '新增',
+                handler: function () {
+                    console.log('add');
+                }
+            },{
+
+                text: '删除',
                 handler: function () {
 
                     var selectRows = $('#table').datagrid('getSelections');
-                    console.log(selectRows);
+                    if(selectRows.length == 0){
+                        $.messager.alert('提示','未选中记录','warning');
+                        return;
+                    }
+                    $.messager.confirm('确认','您确认想要删除记录吗？',function(r){
+                        if (r){
+                            //获取用户选中的记录
+                            var ids = [];
+                            for(var i=0;i< selectRows.length;i++){
+                                ids.push(selectRows[i].id);
+                            }
+                            //异步提交给后台
+                            $.ajax({
+                                url:"items/batch",
+                                type:"post",
+                                data:{"ids[]":ids},
+                                success:function(data){
+                                    if(data!=null){
+                                        $('#table').datagrid('reload');
+                                    }
 
+                                },
+                                dataType:"json"
+                            });
+
+                        }
+                    });
+
+                }
+            },{
+
+                text: '编辑',
+                handler: function () {
+                    console.log('update');
+                }
+            },{
+                iconCls: 'icon-up',
+                text: '上架',
+                handler: function () {
+                    console.log('up');
                 }
             },{
                 iconCls: 'icon-down',

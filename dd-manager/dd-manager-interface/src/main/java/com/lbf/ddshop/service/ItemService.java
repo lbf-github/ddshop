@@ -20,4 +20,6 @@ public interface ItemService {
     List<TbItem> findAll();
 
     Result<TbItem> listItems(Page page) throws Exception;
+
+    int updateItemsByIds(List<Long> ids);
 }

@@ -23,6 +23,7 @@
           <include refid="Base_Column_List"/>
         from tb_item i
          LEFT JOIN tb_item_cat c ON i.cid=c.id
+        WHERE i.status!=3
          ORDER BY i.id DESC
         limit #{offset},#{rows}
 
