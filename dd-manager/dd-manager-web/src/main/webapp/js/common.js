@@ -191,7 +191,8 @@ var itemList = {
                 {field: 'sellPoint', title: '卖点',width:"200"},
                 {field: 'price', title: '商品价格',formatter:function (value,row,index) {
 
-                    return '￥'+(value/100).toFixed(2);
+                    return '￥'+(value/100).toFixed(2).replace(/\d{1,3}(?=(\d{3})+(\.\d*)?$)/g, '$&,');
+
                 }},
                 {field: 'created', title: '创建时间',formatter:function (value,row,index) {
                     return moment(value).format("LL");
