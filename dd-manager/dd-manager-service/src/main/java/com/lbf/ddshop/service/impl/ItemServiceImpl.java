@@ -37,6 +37,12 @@ public class ItemServiceImpl implements ItemService {
         return tbItemMapper.selectByExample(null);
     }
 
+    /**
+     * 分页
+     * @param page
+     * @return
+     * @throws Exception
+     */
     @Override
     public Result<TbItem> listItems(Page page) throws Exception {
 
@@ -48,6 +54,11 @@ public class ItemServiceImpl implements ItemService {
         return result;
     }
 
+    /**
+     * 批量修改
+     * @param ids
+     * @return
+     */
     @Override
     public int updateItemsByIds(List<Long> ids) {
 
@@ -56,6 +67,33 @@ public class ItemServiceImpl implements ItemService {
         TbItemExample example = new TbItemExample();
         TbItemExample.Criteria criteria = example.createCriteria();
         criteria.andIdIn(ids);
+        return tbItemMapper.updateByExampleSelective(record,example);
+    }
+
+
+    @Override
+    public int down_updateItemsByIds(List<Long> ids) {
+        TbItem record=new TbItem();
+        record.setStatus((byte)2);
+
+
+        TbItemExample example=new TbItemExample();
+        TbItemExample.Criteria criteria=example.createCriteria();
+        criteria.andIdIn(ids);
+
+        return tbItemMapper.updateByExampleSelective(record,example);
+    }
+
+
+    @Override
+    public int up_updateItemsByIds(List<Long> ids) {
+        TbItem record=new TbItem();
+        record.setStatus((byte)1);
+
+        TbItemExample example=new TbItemExample();
+        TbItemExample.Criteria criteria=example.createCriteria();
+        criteria.andIdIn(ids);
+
         return tbItemMapper.updateByExampleSelective(record,example);
     }
 }

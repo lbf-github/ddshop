@@ -14,7 +14,7 @@
   </sql>
 
   <select id="countItems"  resultType="int">
-    select count(1) from tb_item
+    select count(1) from tb_item WHERE status!=3
   </select>
 
     <select id="listItemsByPage" parameterType="com.lbf.ddshop.common.dto.Page" resultType="com.lbf.ddshop.pojo.vo.TbItemCustom">

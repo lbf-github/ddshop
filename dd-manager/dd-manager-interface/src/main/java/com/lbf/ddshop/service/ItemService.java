@@ -22,4 +22,8 @@ public interface ItemService {
     Result<TbItem> listItems(Page page) throws Exception;
 
     int updateItemsByIds(List<Long> ids);
+
+    int down_updateItemsByIds(List<Long> ids);
+
+    int up_updateItemsByIds(List<Long> ids);
 }

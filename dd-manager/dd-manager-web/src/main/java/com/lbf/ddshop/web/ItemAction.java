@@ -29,8 +29,8 @@ public class ItemAction {
     private ItemService itemService;
 
     @ResponseBody
-    @RequestMapping(value="/item/{itemId}",method = RequestMethod.GET)
-    public TbItem selectByPramaryKey(@PathVariable("itemId") Long itemId){
+    @RequestMapping(value = "/item/{itemId}", method = RequestMethod.GET)
+    public TbItem selectByPramaryKey(@PathVariable("itemId") Long itemId) {
 
         TbItem tbItem = itemService.getById(itemId);
 
@@ -38,25 +38,37 @@ public class ItemAction {
     }
 
 
-
-
-
     @ResponseBody
     @RequestMapping("/items")
-    public Result<TbItem> listItems(Page page){
-        Result<TbItem> list=null;
+    public Result<TbItem> listItems(Page page) {
+        Result<TbItem> list = null;
         try {
-            list=itemService.listItems(page);
-        }catch (Exception e){
-            logger.error(e.getMessage(),e);
+            list = itemService.listItems(page);
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
             e.printStackTrace();
         }
         return list;
     }
 
     @ResponseBody
-    @RequestMapping(value="items/batch",method = RequestMethod.POST)
-    public int updateItemsByIds(@RequestParam("ids[]") List<Long> ids){
+    @RequestMapping(value = "/items/batch", method = RequestMethod.POST)
+    public int updateItemsByIds(@RequestParam("ids[]") List<Long> ids) {
         return itemService.updateItemsByIds(ids);
     }
+
+
+
+    @ResponseBody
+    @RequestMapping(value = "/items/batch/down",method = RequestMethod.POST)
+    public int down_updateItemsByIds(@RequestParam("ids[]") List<Long> ids){
+        return itemService.down_updateItemsByIds(ids);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/items/batch/up",method = RequestMethod.POST)
+    public int up_updateItemsByIds(@RequestParam("ids[]") List<Long> ids){
+        return itemService.up_updateItemsByIds(ids);
+    }
+
 }

@@ -42,13 +42,13 @@ var itemList = {
 
         $("#table").datagrid({
             toolbar:[{
-
+                iconCls: 'icon-add',
                 text: '新增',
                 handler: function () {
                     console.log('add');
                 }
             },{
-
+                iconCls: 'icon-remove',
                 text: '删除',
                 handler: function () {
 
@@ -83,7 +83,7 @@ var itemList = {
 
                 }
             },{
-
+                iconCls: 'icon-edit',
                 text: '编辑',
                 handler: function () {
                     console.log('update');
@@ -92,23 +92,111 @@ var itemList = {
                 iconCls: 'icon-up',
                 text: '上架',
                 handler: function () {
-                    console.log('up');
+
+
+                    var selectRows=$("#table").datagrid("getSelections");
+                    if(selectRows.length==0){
+                        $.messager.alert("提示","未选中任何列","warning");
+                        return;
+                    }
+                    $.messager.confirm("确认","确认要上架吗",function(r){
+                        if(r){
+                            var ids=[];
+                            for (var i=0;i<selectRows.length;i++){
+                                ids.push(selectRows[i].id);
+                            }
+                            $.post(
+                                //url:请求后台的哪个地址来进行处理，相当于url,String类型
+                                'items/batch/up',
+                                //data:从前台提交哪些数据给后台处理，相当于data，Object类型
+                                {'ids[]':ids},
+                                //callback:后台处理成功的回调函数，相当于success，function类型
+                                function(data){
+                                    $("#table").datagrid("reload");
+                                },
+                                //dataType:返回的数据类型，如：json，String类型
+                                'json'
+                            )
+                            // $.ajax({
+                            //     url:"items/batch/down",
+                            //     data:{'ids[]':ids},
+                            //     type:"post",
+                            //     dataType:"json",
+                            //     success:function (data) {
+                            //         if(data>=0){
+                            //             $("#table").datagrid("reload");
+                            //         }
+                            //     }
+                            // });
+                        }
+                    })
+
+
                 }
+
+
+
             },{
                 iconCls: 'icon-down',
                 text: '下架',
                 handler: function () {
-                    console.log('down');
+
+                    var selectRows=$("#table").datagrid("getSelections");
+                    if(selectRows.length==0){
+                        $.messager.alert("提示","未选中任何列","warning");
+                        return;
+                    }
+                    $.messager.confirm("确认","确认要下架吗",function(r){
+                        if(r){
+                            var ids=[];
+                            for (var i=0;i<selectRows.length;i++){
+                                ids.push(selectRows[i].id);
+                            }
+                            $.post(
+                                //url:请求后台的哪个地址来进行处理，相当于url,String类型
+                                'items/batch/down',
+                                //data:从前台提交哪些数据给后台处理，相当于data，Object类型
+                                {'ids[]':ids},
+                                //callback:后台处理成功的回调函数，相当于success，function类型
+                                function(data){
+                                    $("#table").datagrid("reload");
+                                },
+                                //dataType:返回的数据类型，如：json，String类型
+                                'json'
+                            )
+                            // $.ajax({
+                            //     url:"items/batch/down",
+                            //     data:{'ids[]':ids},
+                            //     type:"post",
+                            //     dataType:"json",
+                            //     success:function (data) {
+                            //         if(data>=0){
+                            //             $("#table").datagrid("reload");
+                            //         }
+                            //     }
+                            // });
+                        }
+                    })
+
+
                 }
             }],
             url: "items",
             columns: [[
                 {field:'ck',checkbox: true},
                 {field: 'id', title: '商品ID'},
-                {field: 'title', title: '商品名称'},
+                {field: 'title', title: '商品名称',width:"200"},
                 {field: 'catName', title: '商品分类'},
                 {field: 'statusName', title: '商品状态'},
-                {field: 'sellPoint', title: '卖点'}
+                {field: 'sellPoint', title: '卖点',width:"200"},
+                {field: 'price', title: '商品价格',formatter:function (value,row,index) {
+
+                    return '￥'+(value/100).toFixed(2);
+                }},
+                {field: 'created', title: '创建时间',formatter:function (value,row,index) {
+                    return moment(value).format("LL");
+                }},
+                {field: 'updated', title: '更新时间'}
             ]],
             pagination: true,
             striped: true,
