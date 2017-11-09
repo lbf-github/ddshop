@@ -44,15 +44,17 @@ public class Order {
         }
         return list;
     }*/
+
     /**
      * 2.0版本
      */
-    public List<String> getOrderParams(){
+    public List<String> getOrderParams() {
         List<String> list = new ArrayList<String>();
         String[] sorts = this.sort.split(",");
         String[] orders = this.order.split(",");
-        for(int i=0;i<sorts.length;i++){
-            String temp=sorts[i]+" "+orders[i];
+        for (int i = 0; i < sorts.length; i++) {
+
+            String temp = sorts[i] + " " + orders[i];
             list.add(temp);
         }
         return list;

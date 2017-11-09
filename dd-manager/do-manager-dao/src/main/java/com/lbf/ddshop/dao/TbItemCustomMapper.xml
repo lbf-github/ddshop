@@ -27,9 +27,20 @@
         <choose>
             <when test="order!=null and order.sort!=null and order.order!=null">
                 <foreach collection="order.orderParams" item="item" open="order by" close="" separator=",">
-                    i.${item}
+
+                    <if test="item=='title desc'">
+                        CONVERT(i.title USING gbk) desc
+                    </if>
+
+                    <if test="item=='title asc'">
+                        CONVERT(i.title USING gbk) asc
+                    </if>
+
+                    <if test="item!='title asc' and item!='title desc'">
+                        i.${item}
+                    </if>
                 </foreach>
-                ,CONVERT(title USING gbk)
+
             </when>
             <otherwise>
                 ORDER BY i.id DESC
