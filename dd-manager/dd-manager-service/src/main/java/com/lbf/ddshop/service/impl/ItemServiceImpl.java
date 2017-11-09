@@ -7,6 +7,7 @@ import com.lbf.ddshop.dao.TbItemCustomMapper;
 import com.lbf.ddshop.dao.TbItemMapper;
 import com.lbf.ddshop.pojo.po.TbItem;
 import com.lbf.ddshop.pojo.po.TbItemExample;
+import com.lbf.ddshop.pojo.vo.TbItemQuery;
 import com.lbf.ddshop.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,12 +48,13 @@ public class ItemServiceImpl implements ItemService {
      * @throws Exception
      */
     @Override
-    public Result<TbItem> listItems(Page page,Order order) throws Exception {
+    public Result<TbItem> listItems(Page page,Order order,TbItemQuery tbItemQuery) throws Exception {
 
-        int total = tbItemCustomMapper.countItems();
+        int total = tbItemCustomMapper.countItems(tbItemQuery);
         Map<String,Object> map=new HashMap<>();
         map.put("page",page);
         map.put("order",order);
+        map.put("tbItemQuery",tbItemQuery);
         List<TbItem> list = tbItemCustomMapper.listItemsByPage(map);
         Result<TbItem> result=new Result<>();
         result.setTotal(total);

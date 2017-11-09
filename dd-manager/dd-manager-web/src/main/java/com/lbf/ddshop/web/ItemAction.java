@@ -4,6 +4,7 @@ import com.lbf.ddshop.common.dto.Order;
 import com.lbf.ddshop.common.dto.Page;
 import com.lbf.ddshop.common.dto.Result;
 import com.lbf.ddshop.pojo.po.TbItem;
+import com.lbf.ddshop.pojo.vo.TbItemQuery;
 import com.lbf.ddshop.service.ItemService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,10 +46,10 @@ public class ItemAction {
      */
     @ResponseBody
     @RequestMapping("/items")
-    public Result<TbItem> listItems(Page page,Order order) {
+    public Result<TbItem> listItems(Page page, Order order, TbItemQuery tbItemQuery) {
         Result<TbItem> list = null;
         try {
-            list = itemService.listItems(page,order);
+            list = itemService.listItems(page,order,tbItemQuery);
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
             e.printStackTrace();
