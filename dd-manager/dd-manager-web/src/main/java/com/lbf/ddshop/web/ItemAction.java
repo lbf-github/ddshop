@@ -1,5 +1,6 @@
 package com.lbf.ddshop.web;
 
+import com.lbf.ddshop.common.dto.Order;
 import com.lbf.ddshop.common.dto.Page;
 import com.lbf.ddshop.common.dto.Result;
 import com.lbf.ddshop.pojo.po.TbItem;
@@ -37,13 +38,17 @@ public class ItemAction {
         return tbItem;
     }
 
-
+    /**
+     * 分页查找
+     * @param page
+     * @return
+     */
     @ResponseBody
     @RequestMapping("/items")
-    public Result<TbItem> listItems(Page page) {
+    public Result<TbItem> listItems(Page page,Order order) {
         Result<TbItem> list = null;
         try {
-            list = itemService.listItems(page);
+            list = itemService.listItems(page,order);
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
             e.printStackTrace();

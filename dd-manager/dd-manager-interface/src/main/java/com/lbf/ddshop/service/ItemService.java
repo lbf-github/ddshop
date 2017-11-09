@@ -1,5 +1,6 @@
 package com.lbf.ddshop.service;
 
+import com.lbf.ddshop.common.dto.Order;
 import com.lbf.ddshop.common.dto.Page;
 import com.lbf.ddshop.common.dto.Result;
 import com.lbf.ddshop.pojo.po.TbItem;
@@ -19,7 +20,7 @@ public interface ItemService {
 
     List<TbItem> findAll();
 
-    Result<TbItem> listItems(Page page) throws Exception;
+    Result<TbItem> listItems(Page page,Order order) throws Exception;
 
     int updateItemsByIds(List<Long> ids);
 

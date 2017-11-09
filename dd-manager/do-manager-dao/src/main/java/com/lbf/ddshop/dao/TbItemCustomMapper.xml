@@ -17,15 +17,25 @@
     select count(1) from tb_item WHERE status!=3
   </select>
 
-    <select id="listItemsByPage" parameterType="com.lbf.ddshop.common.dto.Page" resultType="com.lbf.ddshop.pojo.vo.TbItemCustom">
+    <select id="listItemsByPage" parameterType="java.util.Map" resultType="com.lbf.ddshop.pojo.vo.TbItemCustom">
 
         SELECT
           <include refid="Base_Column_List"/>
         from tb_item i
          LEFT JOIN tb_item_cat c ON i.cid=c.id
         WHERE i.status!=3
-         ORDER BY i.id DESC
-        limit #{offset},#{rows}
+        <choose>
+            <when test="order!=null and order.sort!=null and order.order!=null">
+                <foreach collection="order.orderParams" item="item" open="order by" close="" separator=",">
+                    i.${item}
+                </foreach>
+                ,CONVERT(title USING gbk)
+            </when>
+            <otherwise>
+                ORDER BY i.id DESC
+            </otherwise>
+        </choose>
+        limit #{page.offset},#{page.rows}
 
     </select>
 

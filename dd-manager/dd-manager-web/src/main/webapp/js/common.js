@@ -184,8 +184,8 @@ var itemList = {
             url: "items",
             columns: [[
                 {field:'ck',checkbox: true},
-                {field: 'id', title: '商品ID'},
-                {field: 'title', title: '商品名称',width:"200"},
+                {field: 'id', title: '商品ID',sortable:true},
+                {field: 'title', title: '商品名称',width:"200",sortable:true},
                 {field: 'catName', title: '商品分类'},
                 {field: 'statusName', title: '商品状态'},
                 {field: 'sellPoint', title: '卖点',width:"200"},
@@ -197,10 +197,13 @@ var itemList = {
                 {field: 'created', title: '创建时间',formatter:function (value,row,index) {
                     return moment(value).format("LL");
                 }},
-                {field: 'updated', title: '更新时间'}
+                {field: 'updated', title: '更新时间',formatter:function(value,row,index) {
+            return moment(value).format("LL");
+        }}
             ]],
             pagination: true,
             striped: true,
+            multiSort:true,
             pageSize:20,
             rownumbers:true,
             fit:true,
