@@ -1,7 +1,7 @@
 var ddshop = {
 
     registerMenuEvent: function () {
-
+        var _this=this;
         //约定大于配置：jquery对象前面加上$,如果是DOM对象不需要加$
         var $tree = $('#menu .easyui-tree');
         //将当前树打印到控制台
@@ -10,28 +10,37 @@ var ddshop = {
             onClick: function (node) {
                 var href = node.attributes.href;//item-add
                 var text = node.text;
+                _this.addtabs(text,href);
 
 //                debugger;
-                if ($('#tab').tabs('exists', text)) {
-                    //跳转到指定的选项卡页面
-                    $('#tab').tabs('select', text);
 
-                }
-                else {
-                    $('#tab').tabs('add', {
-
-                        title: text,
-                        href: href,
-                        closable: true
-
-                    });
-
-                }
 
             }
         });
 
+    },
+
+    addtabs:function(text,href){
+
+        if ($('#tab').tabs('exists', text)) {
+            //跳转到指定的选项卡页面
+            $('#tab').tabs('select', text);
+
+        }
+        else {
+            $('#tab').tabs('add', {
+
+                title: text,
+                href: href,
+                closable: true
+
+            });
+
+        }
     }
+
+
+
 
 };
 
@@ -360,6 +369,17 @@ function searchForm() {
 
 }
 
+/**
+ * 添加
+ */
+function add(){
+    ddshop.addtabs("新增商品","item-add");
+}
+
+
+/**
+ *
+ */
 
 
 
