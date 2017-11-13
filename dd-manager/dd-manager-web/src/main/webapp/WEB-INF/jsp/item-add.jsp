@@ -59,6 +59,8 @@
                 </td>
             </tr>
 
+
+
             <tr>
                 <td colspan="2">
                     <button onclick="submitForm()" class="easyui-linkbutton" type="button"
@@ -100,7 +102,28 @@
         }
 
     })
+    
+    function submitForm() {
+        $("#itemAddForm").form('submit',{
+            //表单提交url地址
+            url:'item',
+            onSubmit:function(){
+                return $(this).form("vilidate");
+            },
+            success:function(data){
+                console.log("succss");
+        }
+        })
+    }
 
+    function clearForm(){
+        $("#itemAddForm").form('reset');
 
+    }
+    //实例化编辑器
+    var ue = UE.getEditor('container',{
+        initialFrameWidth: '100%',
+        initialFrameHeight: '150'
+    });
 
 </script>
