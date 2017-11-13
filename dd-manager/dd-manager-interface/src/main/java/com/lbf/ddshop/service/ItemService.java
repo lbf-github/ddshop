@@ -28,4 +28,6 @@ public interface ItemService {
     int down_updateItemsByIds(List<Long> ids);
 
     int up_updateItemsByIds(List<Long> ids);
+
+    int saveItem(TbItem tbItem, String content);
 }

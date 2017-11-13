@@ -102,28 +102,35 @@
         }
 
     })
-    
+
+    //实例化编辑器
+    var ue = UE.getEditor('container',{
+        initialFrameWidth: '100%',
+        initialFrameHeight: '150'
+    });
+
+
     function submitForm() {
         $("#itemAddForm").form('submit',{
             //表单提交url地址
             url:'item',
             onSubmit:function(){
-                return $(this).form("vilidate");
+                $("#price").val($("#priceView").val()*100);
+                return $(this).form("validate");
             },
             success:function(data){
-                console.log("succss");
+                if(data>0){
+                    $.messager.alert('温馨提示','恭喜！添加商品成功！');
+                    ddshop.addtabs('查询商品','item-list');
+                }
         }
         })
     }
 
     function clearForm(){
         $("#itemAddForm").form('reset');
-
+        ue.setContent('商品描述');
     }
-    //实例化编辑器
-    var ue = UE.getEditor('container',{
-        initialFrameWidth: '100%',
-        initialFrameHeight: '150'
-    });
+
 
 </script>

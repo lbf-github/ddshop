@@ -3,15 +3,22 @@ package com.lbf.ddshop.service.impl;
 import com.lbf.ddshop.common.dto.Order;
 import com.lbf.ddshop.common.dto.Page;
 import com.lbf.ddshop.common.dto.Result;
+import com.lbf.ddshop.common.util.IDUtils;
 import com.lbf.ddshop.dao.TbItemCustomMapper;
+import com.lbf.ddshop.dao.TbItemDescMapper;
 import com.lbf.ddshop.dao.TbItemMapper;
 import com.lbf.ddshop.pojo.po.TbItem;
+import com.lbf.ddshop.pojo.po.TbItemDesc;
 import com.lbf.ddshop.pojo.po.TbItemExample;
 import com.lbf.ddshop.pojo.vo.TbItemQuery;
 import com.lbf.ddshop.service.ItemService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,11 +31,17 @@ import java.util.Map;
  */
 @Service
 public class ItemServiceImpl implements ItemService {
+
+    private Logger logger= LoggerFactory.getLogger(this.getClass());
+
     @Autowired
     private TbItemMapper tbItemMapper;
 
     @Autowired
     private TbItemCustomMapper tbItemCustomMapper;
+
+    @Autowired
+    private TbItemDescMapper tbItemDescMapper;
 
     @Override
     public TbItem getById(Long itemId) {
@@ -103,5 +116,38 @@ public class ItemServiceImpl implements ItemService {
         criteria.andIdIn(ids);
 
         return tbItemMapper.updateByExampleSelective(record,example);
+    }
+
+
+    @Override
+    @Transactional
+    public int saveItem(TbItem tbItem, String content) {
+
+        int i=0;
+        try{
+
+            //添加tb_item表
+            Long itemId= IDUtils.getItemId();
+            tbItem.setId(itemId);
+            tbItem.setStatus((byte)2);
+            tbItem.setCreated(new Date());
+            tbItem.setUpdated(new Date());
+            i = tbItemMapper.insert(tbItem);
+
+            //添加tb_item_desc表
+            TbItemDesc tbItemDesc=new TbItemDesc();
+            tbItemDesc.setItemId(itemId);
+            tbItemDesc.setItemDesc(content);
+            tbItemDesc.setCreated(new Date());
+            tbItemDesc.setUpdated(new Date());
+            i +=tbItemDescMapper.insert(tbItemDesc);
+
+
+        }catch (Exception e){
+            logger.error(e.getMessage(),e);
+            e.printStackTrace();
+        }
+
+        return i;
     }
 }

@@ -77,4 +77,20 @@ public class ItemAction {
         return itemService.up_updateItemsByIds(ids);
     }
 
+    @ResponseBody
+    @RequestMapping(value="/item",method = RequestMethod.POST)
+    public int saveItem(TbItem tbItem,String content){
+        int i=0;
+        try{
+
+           i = itemService.saveItem(tbItem,content);
+
+        }catch (Exception e){
+            logger.error(e.getMessage(),e);
+            e.printStackTrace();
+        }
+
+        return i;
+    }
+
 }
