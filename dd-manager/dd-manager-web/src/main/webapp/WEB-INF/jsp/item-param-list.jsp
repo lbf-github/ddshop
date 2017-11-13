@@ -1,26 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
-<div id="toolbar">
+<div id="toolbar1">
     <div>
         <button type="button" onclick="add()" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true">新增</button>
         <button type="button" onclick="edit()" class="easyui-linkbutton" data-options="iconCls:'icon-edit',plain:true">编辑</button>
         <button type="button" onclick="del()" class="easyui-linkbutton" data-options="iconCls:'icon-cancel',plain:true">删除</button>
     </div>
 </div>
-<table id="table"></table>
+<table id="table1"></table>
 
 <script>
     $(function(){
 
         //列表
-        $('#table').datagrid({
+        $('#table1').datagrid({
             title: '商品规格模板列表',
             url:'itemParams',
             fit: true,
             rownumbers: true,
             pagination: true,
             pageSize:20,
-            toolbar: '#toolbar',
+            toolbar: '#toolbar1',
             columns:[[
                 {field:'ck', checkbox: true},
                 {field:'id',title:'ID', sortable: true},
