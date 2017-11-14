@@ -103,6 +103,9 @@
 
     })
 
+    //删除之前的实例对象
+    UE.delEditor("container");
+
     //实例化编辑器
     var ue = UE.getEditor('container',{
         initialFrameWidth: '100%',
