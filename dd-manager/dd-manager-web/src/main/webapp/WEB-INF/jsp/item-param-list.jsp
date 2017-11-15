@@ -45,7 +45,7 @@
         });
     });
     function add(){
-        ttshop.addTab('新增商品规格模板', 'item-param-add');
+        ddshop.addtabs('新增商品规格模板', 'item-param-add');
     }
     function edit(){
 

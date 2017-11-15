@@ -37,6 +37,10 @@ var ddshop = {
             });
 
         }
+    },
+
+    closetabs:function(text){
+        $('#tab').tabs('close',text);
     }
 
 

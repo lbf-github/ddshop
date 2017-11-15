@@ -7,9 +7,11 @@ import com.lbf.ddshop.common.util.IDUtils;
 import com.lbf.ddshop.dao.TbItemCustomMapper;
 import com.lbf.ddshop.dao.TbItemDescMapper;
 import com.lbf.ddshop.dao.TbItemMapper;
+import com.lbf.ddshop.dao.TbItemParamItemMapper;
 import com.lbf.ddshop.pojo.po.TbItem;
 import com.lbf.ddshop.pojo.po.TbItemDesc;
 import com.lbf.ddshop.pojo.po.TbItemExample;
+import com.lbf.ddshop.pojo.po.TbItemParamItem;
 import com.lbf.ddshop.pojo.vo.TbItemQuery;
 import com.lbf.ddshop.service.ItemService;
 import org.slf4j.Logger;
@@ -42,6 +44,9 @@ public class ItemServiceImpl implements ItemService {
 
     @Autowired
     private TbItemDescMapper tbItemDescMapper;
+
+    @Autowired
+    private TbItemParamItemMapper tbItemParamItemMapper;
 
     @Override
     public TbItem getById(Long itemId) {
@@ -121,7 +126,7 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     @Transactional
-    public int saveItem(TbItem tbItem, String content) {
+    public int saveItem(TbItem tbItem, String content,String paramData) {
 
         int i=0;
         try{
@@ -142,6 +147,13 @@ public class ItemServiceImpl implements ItemService {
             tbItemDesc.setUpdated(new Date());
             i +=tbItemDescMapper.insert(tbItemDesc);
 
+            //添加tb_item_param_item表
+            TbItemParamItem tbItemParamItem=new TbItemParamItem();
+            tbItemParamItem.setItemId(itemId);
+            tbItemParamItem.setParamData(paramData);
+            tbItemParamItem.setCreated(new Date());
+            tbItemParamItem.setUpdated(new Date());
+            i+=tbItemParamItemMapper.insert(tbItemParamItem);
 
         }catch (Exception e){
             logger.error(e.getMessage(),e);
