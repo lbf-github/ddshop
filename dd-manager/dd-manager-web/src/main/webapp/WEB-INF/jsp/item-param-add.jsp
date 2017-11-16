@@ -79,18 +79,14 @@
         $("#item-param-group").append($templateLi);
 
     }
-
     //添加参数
-
     function addParam(ele){
-
         var $paramLi=$("#item-param-group-template .item-param li").eq(0).clone();
         $(ele).parent().find(".item-param").append($paramLi);
-
-
     }
 
     //删除分组
+
     function delGroup(ele){
         $(ele).parent().remove();
     }
@@ -101,34 +97,29 @@
         $(ele).parent().remove();
     }
 
-    //保存
+    //保存参数
     function submitForm(){
-
         var groupValues=[];
-        //遍历分组
         var $groups=$("#item-param-group [name=group]");
         $groups.each(function(index,ele){
-            //遍历分组项
+
             var paramValues=[];
             var $params=$(ele).parent().find(".item-param [name=param]");
             $params.each(function(_index,_ele){
-                var _param=$(_ele).val();
-                paramValues.push(_param);
+
+                var $param=$(_ele).val();
+                paramValues.push($param);
             })
 
-            var val=$(ele).val();
             var o={};
+            var val=$(ele).val();
             o.group=val;
-            o.params=paramValues;
-            if($.trim(val).length > 0 && paramValues.length > 0){
+            o.param=paramValues;
+            if($.trim(val).length>0 && paramValues.length>0){
                 groupValues.push(o);
             }
-
-
-
         })
 
-        //得到规格参数模板json串
 
         var cid=$("#cid").combotree("getValue");
         var url = 'item/param/save/' + cid;
@@ -136,11 +127,119 @@
         $.post(url,{paramDate:jsonStr},function(data){
             if(data>0){
                 ddshop.closetabs('规格参数','item-param-list');
+                ddshop.closetabs('新增商品规格模板','item-param-add');
                 ddshop.addtabs('规格参数','item-param-list');
             }
         })
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//    //添加分组
+//    function addGroup(){
+//
+//        var $templateLi=$("#item-param-group-template li").eq(0).clone();
+//        $("#item-param-group").append($templateLi);
+//
+//    }
+//
+//    //添加参数
+//
+//    function addParam(ele){
+//
+//        var $paramLi=$("#item-param-group-template .item-param li").eq(0).clone();
+//        $(ele).parent().find(".item-param").append($paramLi);
+//
+//
+//    }
+//
+//    //删除分组
+//    function delGroup(ele){
+//        $(ele).parent().remove();
+//    }
+//
+//    //删除参数
+//
+//    function delParam(ele){
+//        $(ele).parent().remove();
+//    }
+//
+//    //保存
+//    function submitForm(){
+//
+//        var groupValues=[];
+//        //遍历分组
+//        var $groups=$("#item-param-group [name=group]");
+//        $groups.each(function(index,ele){
+//            //遍历分组项
+//            var paramValues=[];
+//            var $params=$(ele).parent().find(".item-param [name=param]");
+//            $params.each(function(_index,_ele){
+//                var _param=$(_ele).val();
+//                paramValues.push(_param);
+//            })
+//
+//            var val=$(ele).val();
+//            var o={};
+//            o.group=val;
+//            o.params=paramValues;
+//            if($.trim(val).length > 0 && paramValues.length > 0){
+//                groupValues.push(o);
+//            }
+//
+//
+//
+//        })
+//
+//        //得到规格参数模板json串
+//
+//        var cid=$("#cid").combotree("getValue");
+//        var url = 'item/param/save/' + cid;
+//        var jsonStr=JSON.stringify(groupValues);
+//        $.post(url,{paramDate:jsonStr},function(data){
+//            if(data>0){
+//                ddshop.closetabs('规格参数','item-param-list');
+//                ddshop.addtabs('规格参数','item-param-list');
+//            }
+//        })
+//
+//    }
 
     //重置
 

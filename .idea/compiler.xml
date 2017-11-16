@@ -12,10 +12,12 @@
         <module name="dd-manager-service" />
         <module name="dd-manager-web" />
         <module name="do-manager-dao" />
+        <module name="tt-upload" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.7">
       <module name="dd-common" target="1.7" />
+      <module name="dd-ftpclient" target="1.7" />
       <module name="dd-manager" target="1.7" />
       <module name="dd-manager-interface" target="1.7" />
       <module name="dd-manager-pojo" target="1.7" />
@@ -24,6 +26,7 @@
       <module name="dd-parent" target="1.7" />
       <module name="ddcommon" target="1.7" />
       <module name="do-manager-dao" target="1.7" />
+      <module name="tt-upload" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>

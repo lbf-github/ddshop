@@ -10,7 +10,15 @@
     <modules>
         <module>../dd-common</module>
         <module>../dd-manager</module>
+        <module>../dd-ftpclient</module>
+        <module>../tt-upload</module>
     </modules>
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+    </dependencies>
 
     <!--打包方式-->
     <packaging>pom</packaging>
