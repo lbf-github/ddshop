@@ -10,7 +10,6 @@
     <modules>
         <module>../dd-common</module>
         <module>../dd-manager</module>
-        <module>../dd-ftpclient</module>
         <module>../tt-upload</module>
     </modules>
     <dependencies>
@@ -279,10 +278,10 @@
 
             <!-- 文件上传组件 -->
             <dependency>
-                <groupId>commons-fileupload</groupId>
-                <artifactId>commons-fileupload</artifactId>
-                <version>${commons-fileupload.version}</version>
-            </dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>${commons-fileupload.version}</version>
+        </dependency>
 
 
             <!-- Redis客户端 -->

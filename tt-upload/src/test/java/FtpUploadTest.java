@@ -19,9 +19,9 @@ public class FtpUploadTest {
         //创建FTPClient客户端
         FTPClient ftpClient = new FTPClient();
         //创建FTP连接
-        ftpClient.connect("47.93.246.82",21);
+        ftpClient.connect("120.78.182.128",21);
         //登录
-        ftpClient.login("ftpuser","ph147896");
+        ftpClient.login("ftpuser","root123");
         //读取本地文件
         FileInputStream fileInputStream = new FileInputStream(new File("F:\\aaa\\3.jpg"));
         //配置上传参数
