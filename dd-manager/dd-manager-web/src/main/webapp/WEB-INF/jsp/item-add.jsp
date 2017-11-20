@@ -160,7 +160,8 @@
     //实例化编辑器
     var ue = UE.getEditor('container',{
         initialFrameWidth: '100%',
-        initialFrameHeight: '150'
+        initialFrameHeight: '150',
+        serverUrl:'file/upload'
     });
 
 

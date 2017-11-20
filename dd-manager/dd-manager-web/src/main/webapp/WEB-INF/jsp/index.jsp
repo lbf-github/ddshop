@@ -70,5 +70,15 @@
 <script src="js/ueditor/ueditor.config.js"></script>
 <!--编辑器源码文件-->
 <script src="js/ueditor/ueditor.all.js"></script>
+<script>
+    UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl;
+    UE.Editor.prototype.getActionUrl = function(action) {
+        if (action == 'uploadimage') {
+            return 'http://localhost:8080/ddshop/file/upload';
+        }else {
+            return this._bkGetActionUrl.call(this, action);
+        }
+    }
+</script>
 </body>
 </html>
