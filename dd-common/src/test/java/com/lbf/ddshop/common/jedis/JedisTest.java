@@ -49,9 +49,10 @@ public class JedisTest {
         nodes.add(new HostAndPort("120.78.182.128",7006));
         //创建集群对象
         JedisCluster jedisCluster = new JedisCluster(nodes);
+        //jedisCluster.hdel("CONTENT_LIST","89");
         //存入数据
         jedisCluster.set("key2","value2");
-        System.out.println(jedisCluster.get("key2"));
+        //System.out.println(jedisCluster.hget("CONTENT_LIST","89"));
         //关闭连接
         jedisCluster.close();
     }

@@ -11,6 +11,7 @@
         <module>../dd-common</module>
         <module>../dd-manager</module>
         <module>../tt-upload</module>
+        <module>../dd-portal-web</module>
     </modules>
     <dependencies>
         <dependency>

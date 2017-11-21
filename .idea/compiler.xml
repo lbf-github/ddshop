@@ -11,6 +11,7 @@
         <module name="dd-manager-pojo" />
         <module name="dd-manager-service" />
         <module name="dd-manager-web" />
+        <module name="dd-portal-web" />
         <module name="do-manager-dao" />
         <module name="tt-upload" />
       </profile>
@@ -24,6 +25,7 @@
       <module name="dd-manager-service" target="1.7" />
       <module name="dd-manager-web" target="1.7" />
       <module name="dd-parent" target="1.7" />
+      <module name="dd-portal-web" target="1.7" />
       <module name="ddcommon" target="1.7" />
       <module name="do-manager-dao" target="1.7" />
       <module name="tt-upload" target="1.7" />
