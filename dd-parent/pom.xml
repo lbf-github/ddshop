@@ -12,6 +12,7 @@
         <module>../dd-manager</module>
         <module>../tt-upload</module>
         <module>../dd-portal-web</module>
+        <module>../tt-lucene</module>
     </modules>
     <dependencies>
         <dependency>

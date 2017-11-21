@@ -13,6 +13,7 @@
         <module name="dd-manager-web" />
         <module name="dd-portal-web" />
         <module name="do-manager-dao" />
+        <module name="tt-lucene" />
         <module name="tt-upload" />
       </profile>
     </annotationProcessing>
@@ -28,6 +29,7 @@
       <module name="dd-portal-web" target="1.7" />
       <module name="ddcommon" target="1.7" />
       <module name="do-manager-dao" target="1.7" />
+      <module name="tt-lucene" target="1.8" />
       <module name="tt-upload" target="1.7" />
     </bytecodeTargetLevel>
   </component>
