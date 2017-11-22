@@ -12,6 +12,7 @@
         <module name="dd-manager-service" />
         <module name="dd-manager-web" />
         <module name="dd-portal-web" />
+        <module name="dd-search-web" />
         <module name="do-manager-dao" />
         <module name="tt-lucene" />
         <module name="tt-upload" />
@@ -27,6 +28,7 @@
       <module name="dd-manager-web" target="1.7" />
       <module name="dd-parent" target="1.7" />
       <module name="dd-portal-web" target="1.7" />
+      <module name="dd-search-web" target="1.7" />
       <module name="ddcommon" target="1.7" />
       <module name="do-manager-dao" target="1.7" />
       <module name="tt-lucene" target="1.8" />

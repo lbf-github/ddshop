@@ -13,6 +13,7 @@
         <module>../tt-upload</module>
         <module>../dd-portal-web</module>
         <module>../tt-lucene</module>
+        <module>../dd-search-web</module>
     </modules>
     <dependencies>
         <dependency>
