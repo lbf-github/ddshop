@@ -1,5 +1,7 @@
 package com.lbf.ddshop.service;
 
+import com.lbf.ddshop.pojo.vo.TbSearchItemResult;
+
 /**
  * User: Administrator
  * Date: 2017/11/22
@@ -9,4 +11,6 @@ package com.lbf.ddshop.service;
 
 public interface SearchItemService {
     boolean importAllItems();
+
+    TbSearchItemResult search(String keyword, Integer page, int rows);
 }

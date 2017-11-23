@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * Version:V1.0
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({"classpath:spring/spring-dao-test.xml"})
+@ContextConfiguration({"classpath:spring/spring-dao-test.xml","classpath:spring/spring-solr-test.xml"})
 public class TbUserMapperTest {
     @Autowired
     private TbUserMapper userDao;
