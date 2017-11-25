@@ -205,7 +205,8 @@
                 return $(this).form('validate');
             },
             success:function(data){
-                if(data>0){
+               var _data=JSON.parse(data);
+                if(_data.success){
                     $.messager.alert('温馨提示','恭喜！添加商品成功！');
                     ddshop.closetabs('新增商品');
                     ddshop.addtabs('查询商品','item-list');

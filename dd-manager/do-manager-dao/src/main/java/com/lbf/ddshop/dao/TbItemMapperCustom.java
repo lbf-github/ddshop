@@ -12,4 +12,7 @@ import java.util.List;
  */
 public interface TbItemMapperCustom {
     List<TbSearchItemCustom> getSearchItemList();
+
+    TbSearchItemCustom getSearchItemById(Long itemId);
+
 }

@@ -126,18 +126,18 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     @Transactional
-    public int saveItem(TbItem tbItem, String content,String paramData) {
-
+    public Long saveItem(TbItem tbItem, String content,String paramData) {
+        Long itemId=null;
         int i=0;
         try{
 
             //添加tb_item表
-            Long itemId= IDUtils.getItemId();
+            itemId= IDUtils.getItemId();
             tbItem.setId(itemId);
             tbItem.setStatus((byte)2);
             tbItem.setCreated(new Date());
             tbItem.setUpdated(new Date());
-            i = tbItemMapper.insert(tbItem);
+           i = tbItemMapper.insert(tbItem);
 
             //添加tb_item_desc表
             TbItemDesc tbItemDesc=new TbItemDesc();
@@ -160,6 +160,6 @@ public class ItemServiceImpl implements ItemService {
             e.printStackTrace();
         }
 
-        return i;
+        return itemId;
     }
 }
